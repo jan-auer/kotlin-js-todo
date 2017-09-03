@@ -2,4 +2,4 @@ class Message(
         val text: String
 )
 
-header fun log(message: Message);
+//header fun log(message: Message);

@@ -1,17 +1,6 @@
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    ext.kotlin_version = '1.1.4-3'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 apply plugin: 'kotlin-platform-jvm'
 apply plugin: 'application'
 

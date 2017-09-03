@@ -1,18 +1,9 @@
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-buildscript {
-    ext.kotlin_version = '1.1.4-3'
-
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
 apply plugin: 'kotlin-platform-js'
+apply plugin: 'org.jetbrains.kotlin.frontend'
+apply plugin: 'kotlin-dce-js'
 
 repositories {
     mavenCentral()
@@ -20,9 +11,28 @@ repositories {
 
 compileKotlin2Js {
     kotlinOptions.metaInfo = true
+    kotlinOptions.sourceMap = true
+
+    // Integrate with webpack by emitting a commonjs module
+    kotlinOptions.moduleKind = 'commonjs'
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     implement project(":common")
 }
+
+kotlinFrontend {
+    npm {
+        dependency "lodash-es"
+    }
+
+    webpackBundle {
+        bundleName = "main"
+    }
+
+    define "PRODUCTION", true
+}
+
+// Run DCE on kotlin.js before building the final bundle
+bundle.dependsOn runDceKotlinJs

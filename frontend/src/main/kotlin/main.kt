@@ -1,4 +1,9 @@
+@JsModule("lodash")
+external object Lodash {
+    fun uniqueId(prefix: String? = definedExternally): String
+}
+
 fun main(args: Array<String>) {
-    val message = Message("Hello, World!")
-    log(message)
+    println(Lodash.uniqueId())
+    println(Lodash.uniqueId("zwei_"))
 }
