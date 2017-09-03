@@ -1,0 +1,28 @@
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.4-3'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'kotlin-platform-js'
+
+repositories {
+    mavenCentral()
+}
+
+compileKotlin2Js {
+    kotlinOptions.metaInfo = true
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    implement project(":common")
+}
