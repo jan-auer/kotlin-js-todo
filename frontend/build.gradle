@@ -6,7 +6,9 @@ apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: 'kotlin-dce-js'
 
 repositories {
+    jcenter()
     mavenCentral()
+    maven { url "http://dl.bintray.com/kotlin/kotlinx.html/" }
 }
 
 compileKotlin2Js {
@@ -19,19 +21,27 @@ compileKotlin2Js {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-html-js:0.6.5"
+
     implement project(":common")
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
 
 kotlinFrontend {
     npm {
-        dependency "lodash-es"
+//        dependency "lodash-es"
     }
 
     webpackBundle {
         bundleName = "main"
     }
 
-    define "PRODUCTION", true
+    define "PRODUCTION", false
 }
 
 // Run DCE on kotlin.js before building the final bundle
