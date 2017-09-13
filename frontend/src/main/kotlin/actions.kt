@@ -1,4 +1,4 @@
-
+import domain.Todo
 import org.w3c.fetch.RequestInit
 import kotlin.browser.window
 
@@ -9,8 +9,5 @@ fun toggleTodo(todo: Todo) {
             override var body: dynamic = JSON.stringify(todo.copy(completed = !todo.completed))
             override var headers: dynamic = JSON.parse("""{"Content-Type": "application/json"}""")
         }).await()
-
-//        val changedTodo = deserializeTodo(response.json().await())
-//        println("TODO Changed: ${todo}")
     }
 }

@@ -1,6 +1,6 @@
 package domain
 
-data class ToDo(
+data class Todo(
         val id: String,
         val title: String,
         val text: String = "",
