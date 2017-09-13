@@ -24,5 +24,5 @@ class TodoController(val todoRepository: TodoRepository) {
     }
 
     @PutMapping("/{id}")
-    fun putToDo(@RequestBody todo: Todo) = todoRepository.add(todo)
+    fun putToDo(@RequestBody todo: Todo) = todoRepository.put(todo)
 }

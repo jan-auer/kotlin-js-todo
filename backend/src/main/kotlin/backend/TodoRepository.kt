@@ -12,14 +12,17 @@ class TodoRepository {
     private val store = Collections.synchronizedList(ArrayList<Todo>())
 
     init {
-        add(Todo(id = randomUUID(), title = "Bootstrap Project", completed = true))
-        add(Todo(id = randomUUID(), title = "Coding Backend"))
-        add(Todo(id = randomUUID(), title = "Coding Frontend"))
+        put(Todo(id = randomUUID(), title = "Bootstrap Project", completed = true))
+        put(Todo(id = randomUUID(), title = "Coding Backend"))
+        put(Todo(id = randomUUID(), title = "Coding Frontend"))
     }
 
     private final fun randomUUID() = UUID.randomUUID().toString()
 
     final fun getAll(): Flux<Todo> = Flux.fromStream(store.stream())
-    final fun get(id: String): Mono<Todo> = Mono.justOrEmpty(store.firstOrNull { id == it.id })
-    final fun add(todo: Todo) = store.add(todo)
+    final fun get(id: String): Mono<Todo> = Mono.justOrEmpty(store.firstOrNull { it.id == id })
+    final fun put(todo: Todo) {
+        store.removeAll({ it.id == todo.id })
+        store.add(todo)
+    }
 }
