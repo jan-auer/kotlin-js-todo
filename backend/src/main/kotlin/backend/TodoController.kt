@@ -17,8 +17,7 @@ class TodoController(val todoRepository: TodoRepository) {
 
     @GetMapping("/{id}")
     fun getToDo(@PathVariable id: String): Mono<ServerResponse> {
-        val uuid = UUID.fromString(id)
-        val toDo: Mono<ToDo> = todoRepository.get(uuid)
+        val toDo: Mono<ToDo> = todoRepository.get(id)
 
         return toDo
                 .flatMap { ServerResponse.ok().contentType(APPLICATION_JSON).syncBody(it) }
