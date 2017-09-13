@@ -1,7 +1,6 @@
 import domain.Todo
 import org.w3c.fetch.RequestInit
 import kotlin.browser.window
-import kotlin.js.Math
 
 private fun putTodo(todo: Todo) {
     launch {
@@ -15,7 +14,7 @@ private fun putTodo(todo: Todo) {
 }
 
 fun createTodo(title: String) {
-    val id = Math.random().toString()
+    val id = Lodash.uniqueId("todo_")
     val todo = Todo(id = id, title = title)
     putTodo(todo)
 }

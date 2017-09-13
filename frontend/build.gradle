@@ -34,7 +34,7 @@ kotlin {
 
 kotlinFrontend {
     npm {
-//        dependency "lodash-es"
+        dependency "lodash"
     }
 
     webpackBundle {
