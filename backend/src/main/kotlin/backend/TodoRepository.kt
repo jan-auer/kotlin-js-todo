@@ -20,5 +20,5 @@ class TodoRepository {
 
     final fun getAll(): Flux<Todo> = Flux.fromIterable(store.values).sort { o1, o2 -> -o1.id.compareTo(o2.id) }
     final fun get(id: String): Mono<Todo> = Mono.justOrEmpty(store[id])
-    final fun put(todo: Todo) = store.put(todo)
+    final fun put(todo: Todo) = store.put(todo.id, todo)
 }
