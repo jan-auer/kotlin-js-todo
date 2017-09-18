@@ -2,4 +2,3 @@ rootProject.name = 'kotlin-multi-todo'
 include 'frontend'
 include 'domain'
 include 'backend'
-

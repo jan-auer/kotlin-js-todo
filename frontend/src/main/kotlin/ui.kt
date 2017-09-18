@@ -1,10 +1,12 @@
-
 import domain.Todo
 import kotlinx.html.*
 import kotlinx.html.js.onChangeFunction
 import kotlinx.html.js.onClickFunction
 import org.w3c.dom.HTMLInputElement
 
+/**
+ * Renders a single [todo]
+ */
 fun <T, C : kotlinx.html.TagConsumer<T>> C.Todo(todo: Todo) = div {
     onClickFunction = { toggleTodo(todo) }
 
@@ -17,6 +19,9 @@ fun <T, C : kotlinx.html.TagConsumer<T>> C.Todo(todo: Todo) = div {
     }
 }
 
+/**
+ * Renders a list of [todos] and an input box to create new ones
+ */
 fun <T, C : kotlinx.html.TagConsumer<T>> C.Todos(todos: List<Todo>) = div {
     id = "todos"
 

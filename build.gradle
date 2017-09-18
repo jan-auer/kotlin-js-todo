@@ -11,6 +11,9 @@ buildscript {
 	}
 
 	dependencies {
+		// NOTE: Unfortunately we need to add these build dependencies in the
+		// top-level gradle file and not in :frontend, otherwise the build breaks.
+		// This will likely be resolved once the plugins become more stable.
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		classpath "org.jetbrains.kotlin:kotlin-frontend-plugin:0.0.21"
 	}

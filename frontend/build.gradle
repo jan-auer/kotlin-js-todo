@@ -1,8 +1,16 @@
 group 'org.example'
 version '1.0-SNAPSHOT'
 
+// NOTE: The plugins below have been declared in the top-level gradle file.
+// For some reason, declaring them here breaks the build. It is likely that
+// this issue will be resolved once the plugins become more stable.
+
+// Compile (i.e. transpile) kotlin to JS
+// We cannot use kotlin2js, as we need some new functionality
 apply plugin: 'kotlin-platform-js'
+// Add npm, webpack and karma support
 apply plugin: 'org.jetbrains.kotlin.frontend'
+// Add dead code elimination for kotlin.js
 apply plugin: 'kotlin-dce-js'
 
 repositories {
@@ -21,8 +29,15 @@ compileKotlin2Js {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+
+    // Since we render HTML directly, we use kotlinx-html-js. There is also
+    // a server-side implementation to render static HTML. For highly dynamic
+    // though it makes more sense to use a framework like React or CycleJS.
     compile "org.jetbrains.kotlinx:kotlinx-html-js:0.6.4"
 
+    // Note "implement" instead of "compile" for dependencies to
+    // platform-common projects. This is only provided by kotlin-platform-
+    // common, but not by kotlin2js!
     implement project(":domain")
 }
 
@@ -33,16 +48,25 @@ kotlin {
 }
 
 kotlinFrontend {
+    // Generate a package.json and install dependencies during build
     npm {
         dependency "lodash"
     }
 
+    // Basic webpack configuration. More config goes in webpack.config.d
     webpackBundle {
         bundleName = "main"
     }
 
+    // This is where you switch on minification. Regardless, kotlin-dce
+    // will always run.
     define "PRODUCTION", false
 }
 
-// Run DCE on kotlin.js before building the final bundle
+// Run DCE on kotlin.js before building the final bundle. Sadly, this
+// dependency is not set automatically by kotlin-dce-js, so we have to
+// add it. If we leave this out, the minified kotlin.js is generated
+// too late and we end up with:
+//  - failing builds from a clean state
+//  - an outdated min/kotlin.js in incremental builds
 bundle.dependsOn runDceKotlinJs
