@@ -9,7 +9,7 @@ writing.
 This project was created as demo for our talk, which will be available online soon.
 
 <div align="center">
-    <img src="https://i.imgur.com/gzjRTct.png" alt="Screenshot" width="702" />
+    <img src="https://i.imgur.com/RcN2yel.png" alt="Screenshot" width="700" />
 </div>
 
 ## Overview
