@@ -6,7 +6,8 @@ starting point for setting up multi-platform projects with the Kotlin toolchain.
 most of the toolchain and frameworks used in this project are still pre-release at the time of
 writing.
 
-This project was created as demo for our talk, which will be available online soon.
+This project was created as demo for our [talk at Kotlin Vienna](https://bountin.github.io/kotlin-js-talk), 
+which will be available online soon.
 
 <div align="center">
     <img src="https://i.imgur.com/RcN2yel.png" alt="Screenshot" width="700" />
