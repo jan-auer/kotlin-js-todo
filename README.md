@@ -8,6 +8,10 @@ writing.
 
 This project was created as demo for our talk, which will be available online soon.
 
+<div align="center">
+    <img src="https://i.imgur.com/gzjRTct.png" alt="Screenshot" width="702" />
+</div>
+
 ## Overview
 
 The project consists of three modules:
