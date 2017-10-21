@@ -14,9 +14,8 @@ apply plugin: 'org.jetbrains.kotlin.frontend'
 apply plugin: 'kotlin-dce-js'
 
 repositories {
-    jcenter()
-    mavenCentral()
     maven { url "http://dl.bintray.com/kotlin/kotlinx.html/" }
+    maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
 }
 
 compileKotlin2Js {
@@ -35,10 +34,7 @@ dependencies {
     // though it makes more sense to use a framework like React or CycleJS.
     compile "org.jetbrains.kotlinx:kotlinx-html-js:0.6.4"
 
-    // Note "implement" instead of "compile" for dependencies to
-    // platform-common projects. This is only provided by kotlin-platform-
-    // common, but not by kotlin2js!
-    implement project(":domain")
+    expectedBy project(":domain")
 }
 
 kotlin {

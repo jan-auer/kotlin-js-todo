@@ -1,12 +1,13 @@
 buildscript {
 	ext {
-		kotlinVersion = '1.1.4-3'
+		kotlinVersion = '1.2.0-beta-88'
 		springBootVersion = '2.0.0.M2'
 	}
 	repositories {
 		mavenCentral()
 		maven { url "https://repo.spring.io/snapshot" }
 		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -33,11 +34,11 @@ repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
+	maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
 }
 
 dependencies {
-	compile project(':domain')
-	implement project(":domain")
+	expectedBy project(":domain")
 
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
