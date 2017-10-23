@@ -13,5 +13,5 @@ external object Lodash {
     /**
      * Generates a unique ID. If prefix is given, the ID is appended to it
      */
-    fun uniqueId(prefix: String = definedExternally): String;
+    fun uniqueId(prefix: String = definedExternally): String
 }
